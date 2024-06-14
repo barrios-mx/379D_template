@@ -1,0 +1,614 @@
+version = 4.2
+
+//
+// Saved by sw version: 2024.1
+//
+
+model "2023-11-15 2L-3PH_v1" {
+    configuration {
+        hil_device = "HIL604"
+        hil_configuration_id = 7
+        simulation_method = exact
+        simulation_time_step = auto
+        simulation_discret_scaling = 1.0
+        dsp_timer_periods = 100e-6, 50e-3
+        ss_calc_method = "systematic elimination"
+        enb_pole_shift = True
+        enb_gds_oversampling = True
+        show_modes = False
+        device_ao_limit_enable = False
+        reset_analog_outputs_on_sim_stop = True
+        reset_analog_outputs_on_sim_stop_mode = Offset values
+        reset_digital_outputs_on_sim_stop = True
+        vhil_adio_loopback = False
+        cpl_stb = True
+        enb_dep_sw_detect = False
+        code_section = "internal memory"
+        data_section = "internal memory"
+        sys_sp_rate_1 = 0.0001
+        sys_sp_rate_2 = 0.05
+        sys_real_type_precision = "default"
+        user_real_type_precision = "default"
+        sys_cpu_optimization = "high"
+        user_cpu_optimization = "high"
+        user_cpu_part_option = "default"
+        matrix_based_reduction = True
+        cpl_dynamics_analysis = False
+        export_ss_to_pickle = False
+        ground_scope_core = False
+        dss_num_tol = 1e-15
+        cce_platform = "generic"
+        cce_use_relative_names = False
+        cce_type_mapping_real = "double"
+        cce_type_mapping_uint = "unsigned int"
+        cce_type_mapping_int = "int"
+        cce_platform = "generic"
+        cce_use_relative_names = False
+        cce_type_mapping_real = "double"
+        cce_type_mapping_uint = "unsigned int"
+        cce_type_mapping_int = "int"
+        cce_directory = ""
+        cce_custom_type_int = ""
+        cce_custom_type_uint = ""
+        cce_custom_type_real = ""
+        tunable_params = "component defined"
+        sp_compiler_type = "C compiler"
+        sig_stim = "off"
+        export_resource_list = ""
+        export_dependency_list = ""
+        excluded_resource_list = ""
+        export_out_file = ""
+        export_lock_top_level = True
+        export_encrypt_library = True
+        export_encrypt_resources = True
+        dae_solver = "BDF"
+        max_sim_step = 1e-4
+        simulation_time = 1.0
+        abs_tol = 1e-3
+        rel_tol = 1e-3
+        init_sim_step = 1e-6
+        r_on_sw = 1e-3
+        v_on_diode = 0.2
+        data_sampling_rate = 0
+        feedthrough_validation_error_level = warning
+    }
+
+    component Subsystem Root {
+        component "core/Voltage Measurement" Vinp {
+            feed_forward = "true"
+        }
+        [
+            position = 9064, 9008
+            rotation = right
+            size = 64, 32
+        ]
+
+        component "core/Current Measurement" Iinv_L1 {
+        }
+        [
+            position = 9728, 9000
+            size = 64, 32
+        ]
+
+        component "core/Voltage Measurement" Vout_L1 {
+            execution_rate = "10e-6"
+            signal_access = "Inherit"
+        }
+        [
+            position = 9952, 9088
+            rotation = right
+            size = 64, 32
+        ]
+
+        component "core/Current RMS" Iout_L1_rms {
+        }
+        [
+            position = 10136, 9000
+            size = 64, 32
+        ]
+
+        component "core/Capacitor" C9 {
+            capacitance = "50e-6"
+            signal_access = "Inherit"
+        }
+        [
+            position = 10056, 9144
+            rotation = right
+        ]
+
+        component "core/Inductor" L1 {
+            inductance = "8.6e-3"
+            signal_access = "Inherit"
+        }
+        [
+            position = 9632, 9000
+        ]
+
+        component "core/Resistor" R1 {
+            resistance = "0.096"
+        }
+        [
+            position = 9536, 9000
+        ]
+
+        component "core/Resistor" R4 {
+            resistance = "0.0021"
+        }
+        [
+            position = 10056, 9056
+            rotation = right
+        ]
+
+        component "core/Single Pole Single Throw Contactor" S1 {
+        }
+        [
+            position = 10256, 9000
+            size = 64, 32
+        ]
+
+        component "core/Variable Resistor" RL1 {
+        }
+        [
+            position = 10384, 9112
+            rotation = right
+            size = 64, 48
+        ]
+
+        component "core/SCADA Input" "SCADA Input1" {
+            unit = ""
+        }
+        [
+            position = 10472, 9112
+            rotation = down
+        ]
+
+        component "core/Capacitor" C10 {
+        }
+        [
+            position = 9216, 8912
+            rotation = right
+        ]
+
+        component "core/Capacitor" C11 {
+        }
+        [
+            position = 9216, 9048
+            rotation = right
+        ]
+
+        component "core/Ground" gnd1 {
+        }
+        [
+            position = 9952, 9288
+        ]
+
+        component "core/Resistor" R5 {
+            resistance = "10"
+        }
+        [
+            position = 10208, 9120
+            rotation = right
+        ]
+
+        component "core/Voltage Source" Vdc1 {
+            init_const_value = "400"
+        }
+        [
+            position = 9136, 8920
+            rotation = right
+        ]
+
+        component "core/Voltage Source" Vdc2 {
+            init_const_value = "400"
+        }
+        [
+            position = 9136, 9064
+            rotation = right
+        ]
+
+        component "core/IGBT Leg" "IGBT Leg1" {
+            S_bot = "7"
+            fvd_def_method = "LUT"
+            pwm_enable_di = "18"
+            pwm_enabling = "True"
+            signal_access = "Inherit"
+        }
+        [
+            position = 9408, 9000
+            size = 80, 192
+        ]
+
+        component "core/Ground" gnd2 {
+        }
+        [
+            position = 9320, 9256
+        ]
+
+        component "core/Voltage RMS" Vrms1 {
+        }
+        [
+            position = 9840, 9088
+            rotation = right
+            size = 64, 32
+        ]
+
+        junction Junction460 pe
+        [
+            position = 9216, 8992
+        ]
+
+        junction Junction462 pe
+        [
+            position = 9128, 8832
+        ]
+
+        junction Junction464 pe
+        [
+            position = 9136, 8992
+        ]
+
+        junction Junction466 pe
+        [
+            position = 9952, 9000
+        ]
+
+        junction Junction467 pe
+        [
+            position = 10056, 9000
+        ]
+
+        junction Junction474 pe
+        [
+            position = 9216, 8832
+        ]
+
+        junction Junction475 pe
+        [
+            position = 9216, 9200
+        ]
+
+        junction Junction476 pe
+        [
+            position = 9136, 9200
+        ]
+
+        junction Junction477 pe
+        [
+            position = 9952, 9224
+        ]
+
+        junction Junction478 pe
+        [
+            position = 10056, 9224
+        ]
+
+        junction Junction479 pe
+        [
+            position = 10208, 9000
+        ]
+
+        junction Junction480 pe
+        [
+            position = 10208, 9224
+        ]
+
+        junction Junction481 pe
+        [
+            position = 9840, 9000
+        ]
+
+        junction Junction482 pe
+        [
+            position = 9952, 9224
+        ]
+
+        comment Comment1 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-size:16pt;">Template prepared by Manuel Barrios | April 8, 2024</span></p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-size:16pt;">barrios.mx@ieee.org</span></p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-size:16pt;">mabf@energy.aau.dk </span></p></body></html> ENDCOMMENT 
+        [
+            position = 9384, 8624
+        ]
+
+        connect L1.n_node Iinv_L1.p_node as Connection2951
+        connect L1.p_node R1.n_node as Connection2970
+        connect C9.p_node R4.n_node as Connection3014
+        connect RL1.In "SCADA Input1.out" as Connection3176
+        connect C10.n_node Junction460 as Connection3216
+        [
+            breakpoints = 9216, 8976
+        ]
+        connect Junction460 C11.p_node as Connection3217
+        connect Vdc1.p_node Junction462 as Connection3228
+        connect Vdc2.p_node Junction464 as Connection3232
+        connect Vdc1.n_node Junction464 as Connection3234
+        connect Vout_L1.p_node Junction466 as Connection3246
+        connect Junction466 Junction467 as Connection3247
+        [
+            breakpoints = 9984, 9000
+        ]
+        connect Junction467 Iout_L1_rms.p_node as Connection3248
+        connect R4.p_node Junction467 as Connection3249
+        connect Junction464 Junction460 as Connection3262
+        [
+            breakpoints = 9136, 8992; 9160, 8992
+        ]
+        connect C10.p_node Junction474 as Connection3281
+        connect Junction474 Junction462 as Connection3282
+        [
+            breakpoints = 9216, 8832; 9216, 8832; 9128, 8832
+        ]
+        connect "IGBT Leg1.pos_out" Junction474 as Connection3283
+        connect Junction475 C11.n_node as Connection3285
+        [
+            breakpoints = 9216, 9200; 9216, 9200
+        ]
+        connect "IGBT Leg1.neg_out" Junction475 as Connection3286
+        connect Junction476 Junction475 as Connection3289
+        [
+            breakpoints = 9152, 9200
+        ]
+        connect Vdc2.n_node Junction476 as Connection3290
+        connect gnd2.node Junction460 as Connection3291
+        connect R1.p_node "IGBT Leg1.a_in" as Connection3292
+        connect Vout_L1.n_node Junction477 as Connection3295
+        [
+            breakpoints = 9952, 9192
+        ]
+        connect Junction477 gnd1.node as Connection3296
+        connect Vinp.p_node Junction462 as Connection3301
+        [
+            breakpoints = 9064, 8840; 9064, 8832; 9072, 8832
+        ]
+        connect Junction476 Vinp.n_node as Connection3302
+        [
+            breakpoints = 9136, 9200; 9120, 9200; 9120, 9200; 9064, 9200; 9064, 9200
+        ]
+        connect S1.a_out RL1.p_node as Connection3304
+        connect C9.n_node Junction478 as Connection3305
+        connect S1.a_in Junction479 as Connection3308
+        connect Junction479 Iout_L1_rms.n_node as Connection3309
+        connect R5.p_node Junction479 as Connection3310
+        connect RL1.n_node Junction480 as Connection3311
+        connect Junction480 Junction478 as Connection3312
+        connect R5.n_node Junction480 as Connection3313
+        connect Iinv_L1.n_node Junction481 as Connection3314
+        connect Junction481 Junction466 as Connection3315
+        [
+            breakpoints = 9856, 9000; 9856, 9000
+        ]
+        connect Vrms1.p_node Junction481 as Connection3316
+        connect Junction478 Junction482 as Connection3317
+        [
+            breakpoints = 10056, 9224
+        ]
+        connect Junction482 Junction477 as Connection3318
+        connect Vrms1.n_node Junction482 as Connection3319
+    }
+
+    default {
+        "core/Capacitor" {
+            signal_access = "inherit"
+            capacitance = "1e-6"
+            initial_voltage = "0"
+            pole_shift_ignore = "False"
+            visible = "True"
+        }
+
+        "core/Inductor" {
+            signal_access = "inherit"
+            inductance = "1e-3"
+            initial_current = "0.0"
+            pole_shift_ignore = "False"
+            visible = "True"
+        }
+
+        "core/Resistor" {
+            resistance = "1"
+            param_set = ""
+        }
+
+        "core/SCADA Input" {
+            signal_access = "inherit"
+            addr = "0"
+            format = "real"
+            override_signal_name = "False"
+            signal_name = ""
+            signal_type = "real"
+            min = "-1e6"
+            max = "1e6"
+            def_value = "0"
+            unit = " "
+            execution_rate = "100e-6"
+        }
+
+        "core/Voltage Source" {
+            sig_input = "False"
+            type = "signal generator"
+            param_set = "1phase"
+            parent_label = ""
+            addr = "0"
+            spc_nb = "0"
+            execution_rate = "100e-6"
+            cpd_visible = "True"
+            enable_snb = "False"
+            snb_type = "R2"
+            R2 = "0.0"
+            L1 = "0.1"
+            override_signal_name = "False"
+            signal_name = ""
+            init_source_nature = "Constant"
+            init_const_value = "0.0"
+            init_rms_value = "0.0"
+            init_frequency = "50.0"
+            init_phase = "0.0"
+        }
+
+        "core/Current Measurement" {
+            signal_access = "inherit"
+            bw_limit = "False"
+            frequency = "10e3"
+            comparator_enable = "False"
+            operator = "greater"
+            threshold = "0"
+            cmp_abs_value = "False"
+            feed_forward = "false"
+            sig_output = "False"
+            sig_output_filt_and_full_bw = "False"
+            execution_rate = "100e-6"
+            addr = "0"
+            nd_msr_estimation = "false"
+            dev_cpl_msr = "false"
+            host_device = "0"
+            output_to_device = "0"
+            dev_cpl_index = "0"
+            dev_cpl_var_nb = "0"
+            visible = "True"
+            override_signal_name = "False"
+            signal_name = ""
+        }
+
+        "core/Current RMS" {
+            signal_access = "inherit"
+            op_mode = "PLL based"
+            frequency = "50"
+            pin_to_system_cpu = "True"
+            Tfast = "100e-6"
+            Tslow = "200e-6"
+            sig_output = "False"
+            execution_rate = "inherit"
+            feed_forward = "False"
+            nd_msr_estimation = "false"
+        }
+
+        "core/IGBT Leg" {
+            signal_access = "inherit"
+            model_type = "Global GDS oversampling"
+            ctrl_src = "Digital input per switch"
+            op_mode = "Fixed carrier frequency"
+            carrier_freq = "10000.0"
+            phase_op_mode = "Fixed carrier phase offset"
+            carr_ph_offset = "0.0"
+            d_time = "5e-6"
+            ref_sig_min_max = "[-1.0, 1.0]"
+            load_mode = "on min"
+            execution_rate = "inherit"
+            S_top = "1"
+            S_top_logic = "active high"
+            S_bot = "2"
+            S_bot_logic = "active high"
+            S_top_I = "False"
+            S_bot_I = "False"
+            _control_property = "all high"
+            switches_names_at_mask = "[]"
+            pwm_enabling = "False"
+            pwm_enable_di = "13"
+            pwm_enable_inv = "active high"
+            delay_enabled = "False"
+            fixed_delay = "1e-6"
+            var_delay_lut = "[-10.0, 1e-6, 10.0, 1e-6]"
+            preview_var_delay = "Preview"
+            vout_cmp_pullup_mode = "False"
+            vout_cmp_timeout = "5e-6"
+            show_monitoring = "False"
+            fvd = "False"
+            losses_estimation = "False"
+            fvd_def_method = "Voltage and Resistance"
+            Import_igbt_xml = "not selected"
+            Import_diode_xml = "not selected"
+            Switch_type = "IGBT"
+            Vce = "1.3"
+            Rce = "0"
+            Vd = "1.2"
+            Rd = "0"
+            i_sw = "[0.0, 6.0, 12.0, 18.0, 24.0]"
+            v_sw = "[0.0, 600.0]"
+            temp_sw = "[25.0, 50.0, 75.0, 100.0, 125.0]"
+            vce_table_out = "[1.3, 1.3, 1.3, 1.3, 1.3]"
+            vd_table_out = "[1.2, 1.2, 1.2, 1.2, 1.2]"
+            et_on_table_out = "[[0.0, 0.0275e-3, 0.15e-3, 0.275e-3, 0.3e-3], [0.35*3.8e-3, 0.4*3.8e-3, 0.8*3.8e-3, 0.68*3.8e-3, 0.9*3.8e-3], [0.65*3.8e-3, 0.9*3.8e-3, 1.2*3.8e-3, 1.5*3.8e-3, 1.7*3.8e-3], [0.9*3.8e-3, 1.3*3.8e-3, 1.7*3.8e-3, 1.9*3.8e-3, 2.25*3.8e-3], [1.1*3.8e-3, 1.7*3.8e-3, 2.1*3.8e-3, 2.3*3.8e-3, 2.5*3.8e-3]]"
+            et_off_table_out = "[[0.0, 0.0275e-3, 0.15e-3, 0.275e-3, 0.3e-3], [0.35*2.1e-3, 0.4*2.1e-3, 0.8*2.1e-3, 0.68*2.1e-3, 0.9*2.1e-3], [0.65*2.1e-3, 0.9*2.1e-3, 1.2*2.1e-3, 1.5*2.1e-3, 1.7*2.1e-3], [0.9*2.1e-3, 1.3*2.1e-3, 1.7*2.1e-3, 1.9*2.1e-3, 2.25*2.1e-3], [1.1*2.1e-3, 1.7*2.1e-3, 2.1*2.1e-3, 2.3*2.1e-3, 2.5*2.1e-3]]"
+            ed_off_table_out = "[[0.0, 0.0275e-3, 0.15e-3, 0.275e-3, 0.3e-3], [0.35*2.2e-3, 0.4*2.2e-3, 0.8*2.2e-3, 0.68*2.2e-3, 0.9*2.2e-3], [0.65*2.2e-3, 0.9*2.2e-3, 1.2*2.2e-3, 1.5*2.2e-3, 1.7*2.2e-3], [0.9*2.2e-3, 1.3*2.2e-3, 1.7*2.2e-3, 1.9*2.2e-3, 2.25*2.2e-3], [1.1*2.2e-3, 1.7*2.2e-3, 2.1*2.2e-3, 2.3*2.2e-3, 2.5*2.2e-3]]"
+            temp_estimation = "False"
+            thermal_networks_type = "Foster"
+            switch_Rth = "[0.159, 0.133, 0.120, 0.038]"
+            switch_Tth = "[1.1e-1, 1.56e-2, 1.35e-3, 1.51e-4]"
+            switch_Cth = "[0.0029, 0.0097, 0.1068, 0.8500]"
+            diode_Rth = "[0.159, 0.133, 0.120, 0.038]"
+            diode_Tth = "[1.1e-1, 1.56e-2, 1.35e-3, 1.51e-4]"
+            diode_Cth = "[0.0029, 0.0097, 0.1068, 0.8500]"
+            loss_exec_rate = "100e-6"
+            visualize_luts = "Visualize Lookup Tables"
+            show_cnt_out = "False"
+            PESB_Optimization = "True"
+            dtv_flag_en = "True"
+            reserved_parameter1 = "0"
+            predictive_diode_turn_off = "False"
+        }
+
+        "core/Single Pole Single Throw Contactor" {
+            signal_access = "inherit"
+            ctrl_src = "Digital input"
+            Sa = "1"
+            Sa_logic = "active high"
+            enable_fb_out = "False"
+            fb_out_type = "real"
+            execution_rate = "inherit"
+            initial_state = "off"
+            on_delay = "0"
+            off_delay = "0"
+            switching = "any current"
+            hide_int_meas = "False"
+        }
+
+        "core/Variable Resistor" {
+            inductance = "1e-3"
+            initial_current = "0.0"
+            hide_int_meas = "False"
+        }
+
+        "core/Voltage Measurement" {
+            signal_access = "inherit"
+            bw_limit = "False"
+            frequency = "10e3"
+            comparator_enable = "False"
+            operator = "greater"
+            threshold = "0"
+            cmp_abs_value = "False"
+            feed_forward = "false"
+            sig_output = "False"
+            sig_output_filt_and_full_bw = "False"
+            execution_rate = "100e-6"
+            addr = "0"
+            nd_msr_estimation = "false"
+            dev_cpl_msr = "false"
+            host_device = "0"
+            output_to_device = "0"
+            dev_cpl_index = "0"
+            dev_cpl_var_nb = "0"
+            visible = "True"
+            override_signal_name = "False"
+            signal_name = ""
+        }
+
+        "core/Voltage RMS" {
+            signal_access = "inherit"
+            op_mode = "PLL based"
+            frequency = "50"
+            pin_to_system_cpu = "True"
+            Tfast = "100e-6"
+            Tslow = "200e-6"
+            sig_output = "False"
+            execution_rate = "inherit"
+            feed_forward = "False"
+            nd_msr_estimation = "false"
+        }
+    }
+
+    CODE model_init
+        # Numpy module is imported as 'np'
+        # Scipy module is imported as 'sp'
+        # The Schematic API is imported as 'mdl'
+        # To get the model file path, use 'mdl.get_model_file_path()'
+        # To print information to the console, use info()
+        
+        # Template prepared by Manuel Barrios | April 8, 2024
+    ENDCODE
+}
