@@ -26,7 +26,7 @@ slprj/
 sccprj/
 codegen/
 
-# Cache files
+# Cache filess
 *.slxc
 
 # Cloud based storage dotfile
