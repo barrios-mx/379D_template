@@ -11,12 +11,26 @@
     <components>
         <inputs>
             <input>
-                <name>Vdc</name>
+                <name>Vdc1</name>
                 <device>0</device>
             	<input_type>OnePhaseInput</input_type>
                 <waveform_type>Constant</waveform_type>
                 <waveform></waveform>
-                <constant_value>800.0</constant_value>
+                <constant_value>400.0</constant_value>
+                <rms>0.0</rms>
+                <frequency>50.0</frequency>
+                <phase>0.0</phase>
+                <use_harmonics>False</use_harmonics>
+                <harmonics>[]</harmonics>
+                <harmonics_type>per_rms_unit_harmonics</harmonics_type>
+            </input>
+            <input>
+                <name>Vdc2</name>
+                <device>0</device>
+            	<input_type>OnePhaseInput</input_type>
+                <waveform_type>Constant</waveform_type>
+                <waveform></waveform>
+                <constant_value>400.0</constant_value>
                 <rms>0.0</rms>
                 <frequency>50.0</frequency>
                 <phase>0.0</phase>
@@ -75,14 +89,14 @@
             <analog_channel>
                 <number>3</number>
                 <device>0</device>
-                <scale>266.666</scale>
-                <offset>1.5</offset>
+                <scale>100.0</scale>
+                <offset>0.0</offset>
                 <locked>False</locked>
                 <ao_limiting_enabled>False</ao_limiting_enabled>
                 <ao_lower_limit>-10.0</ao_lower_limit>
                 <ao_upper_limit>10.0</ao_upper_limit>
                 <analog_signal>
-                	<name>Vout_L1</name>
+                	<name>const_0V</name>
                 	<show>True</show>
                 	<device>0</device>
                 </analog_signal>
@@ -120,14 +134,14 @@
             <analog_channel>
                 <number>6</number>
                 <device>0</device>
-                <scale>100.0</scale>
-                <offset>0.0</offset>
+                <scale>300.0</scale>
+                <offset>1.5</offset>
                 <locked>False</locked>
                 <ao_limiting_enabled>False</ao_limiting_enabled>
                 <ao_lower_limit>-10.0</ao_lower_limit>
                 <ao_upper_limit>10.0</ao_upper_limit>
                 <analog_signal>
-                	<name>const_0V</name>
+                	<name>Vout_L1</name>
                 	<show>True</show>
                 	<device>0</device>
                 </analog_signal>
@@ -195,14 +209,14 @@
             <analog_channel>
                 <number>11</number>
                 <device>0</device>
-                <scale>50.0</scale>
-                <offset>1.5</offset>
+                <scale>100.0</scale>
+                <offset>0.0</offset>
                 <locked>False</locked>
                 <ao_limiting_enabled>False</ao_limiting_enabled>
                 <ao_lower_limit>-10.0</ao_lower_limit>
                 <ao_upper_limit>10.0</ao_upper_limit>
                 <analog_signal>
-                	<name>Iinv_L1</name>
+                	<name>const_0V</name>
                 	<show>True</show>
                 	<device>0</device>
                 </analog_signal>
@@ -240,14 +254,14 @@
             <analog_channel>
                 <number>14</number>
                 <device>0</device>
-                <scale>100.0</scale>
+                <scale>50.0</scale>
                 <offset>0.0</offset>
                 <locked>False</locked>
                 <ao_limiting_enabled>False</ao_limiting_enabled>
                 <ao_lower_limit>-10.0</ao_lower_limit>
                 <ao_upper_limit>10.0</ao_upper_limit>
                 <analog_signal>
-                	<name>const_0V</name>
+                	<name>Iinv_L1</name>
                 	<show>True</show>
                 	<device>0</device>
                 </analog_signal>
@@ -270,14 +284,14 @@
             <analog_channel>
                 <number>16</number>
                 <device>0</device>
-                <scale>333.333</scale>
+                <scale>100.0</scale>
                 <offset>0.0</offset>
                 <locked>False</locked>
                 <ao_limiting_enabled>False</ao_limiting_enabled>
                 <ao_lower_limit>-10.0</ao_lower_limit>
                 <ao_upper_limit>10.0</ao_upper_limit>
                 <analog_signal>
-                	<name>Vinp</name>
+                	<name>const_0V</name>
                 	<show>True</show>
                 	<device>0</device>
                 </analog_signal>
@@ -390,14 +404,14 @@
             <analog_channel>
                 <number>24</number>
                 <device>0</device>
-                <scale>100.0</scale>
+                <scale>500.0</scale>
                 <offset>0.0</offset>
                 <locked>False</locked>
                 <ao_limiting_enabled>False</ao_limiting_enabled>
                 <ao_lower_limit>-10.0</ao_lower_limit>
                 <ao_upper_limit>10.0</ao_upper_limit>
                 <analog_signal>
-                	<name>const_0V</name>
+                	<name>Vinp</name>
                 	<show>True</show>
                 	<device>0</device>
                 </analog_signal>
@@ -1800,6 +1814,11 @@
         <batteries>
         </batteries>
         <scada_inputs>
+            <scada_input>
+                <name>SCADA Input1</name>
+                <device>0</device>
+                <value>0.0</value>
+            </scada_input>
         </scada_inputs>
         <tunable_parameters>
         </tunable_parameters>
